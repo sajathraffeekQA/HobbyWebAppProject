@@ -9,6 +9,18 @@ public class Movies {
 	private String genre;
 	
 	
+	public Movies(Long id, String movieTitle, int releaseYear, int rating, String genre) {
+		super();
+		this.id = id;
+		this.movieTitle = movieTitle;
+		this.releaseYear = releaseYear;
+		this.rating = rating;
+		this.genre = genre;
+	}
+		
+	public Movies() {
+		super();
+	}
 	public Long getId() {
 		return id;
 	}
