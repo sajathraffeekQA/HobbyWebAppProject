@@ -21,6 +21,8 @@ public class Movies {
 	public Movies() {
 		super();
 	}
+	
+	
 	public Long getId() {
 		return id;
 	}
