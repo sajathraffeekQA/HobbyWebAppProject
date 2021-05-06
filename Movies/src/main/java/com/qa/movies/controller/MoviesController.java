@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.movies.domain.Movies;
+import com.qa.movies.service.MoviesService;
 
 @RestController
 public class MoviesController {
 
+	private MoviesService service;
+	
 	public MoviesController(MoviesService service) {
 		this.service = service; 
 	}
@@ -48,4 +51,5 @@ public class MoviesController {
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Movies> updateEntry(@PathVariable Long id, @RequestBody Movies newObject){
 		return new ResponseEntity<Movies>(this.service.update(id, newObject), HttpStatus.ACCEPTED);
+} 
 }
