@@ -1,7 +1,15 @@
 package com.qa.movies.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Movies {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String movieTitle;
 	private int releaseYear;
@@ -12,6 +20,7 @@ public class Movies {
 	public Movies(Long id, String movieTitle, int releaseYear, int rating, String genre) {
 		super();
 		this.id = id;
+		//@NotNull()
 		this.movieTitle = movieTitle;
 		this.releaseYear = releaseYear;
 		this.rating = rating;

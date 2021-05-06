@@ -8,12 +8,13 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.qa.movies.domain.Movies;
+import com.qa.movies.repo.MoviesRepo;
 
 
 	@Service
 	public class MoviesServiceDB implements MoviesService{
 		
-		private MoviesRepo repo; // <-- dependency
+		private MoviesRepo repo;
 		
 		public MoviesServiceDB(MoviesRepo repo) {
 			this.repo = repo; 
@@ -47,8 +48,13 @@ import com.qa.movies.domain.Movies;
 			entry.setGenre(newMovies.getGenre());
 			
 			return this.repo.saveAndFlush(entry);
+		
 		}
-
+		@Override
+		public Movies getById(Long id) {
+			Optional<Movies> optionalEntry = this.repo.findById(id);
+			return optionalEntry.get(); 
 		
 
+}
 }
