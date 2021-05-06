@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.movies.domain.Movies;
-import com.qa.movies.service.MoviesService;
+import com.qa.movies.service.MoviesServiceDB;
 
 @RestController
 public class MoviesController {
 
-	private MoviesService service;
+	private MoviesServiceDB service;
 	
-	public MoviesController(MoviesService service) {
+	public MoviesController(MoviesServiceDB service) {
 		this.service = service; 
 	}
 		

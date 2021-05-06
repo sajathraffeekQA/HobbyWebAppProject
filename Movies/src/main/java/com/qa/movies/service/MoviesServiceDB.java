@@ -12,7 +12,7 @@ import com.qa.movies.repo.MoviesRepo;
 
 
 	@Service
-	public class MoviesServiceDB implements MoviesService{
+	public class MoviesServiceDB {
 		
 		private MoviesRepo repo;
 		
@@ -20,25 +20,25 @@ import com.qa.movies.repo.MoviesRepo;
 			this.repo = repo; 
 		}
 		
-		@Override
+	
 		public Movies create(Movies m) {
 			return this.repo.save(m);
 //			return this.repo.saveAndFlush(m);
 		}
 
-		@Override
+		
 		public List<Movies> getAll() {
 			return this.repo.findAll();
 		}
 
 
-		@Override
+
 		public boolean remove(Long id) {
 			this.repo.deleteById(id);
 			return this.repo.existsById(id);
 		}
 
-		@Override
+		
 		public Movies update(Long id, Movies newMovies) {
 			Movies entry = this.repo.findById(id).orElseThrow(); 
 			
@@ -50,7 +50,7 @@ import com.qa.movies.repo.MoviesRepo;
 			return this.repo.saveAndFlush(entry);
 		
 		}
-		@Override
+	
 		public Movies getById(Long id) {
 			Optional<Movies> optionalEntry = this.repo.findById(id);
 			return optionalEntry.get(); 

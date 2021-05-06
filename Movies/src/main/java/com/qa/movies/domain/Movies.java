@@ -26,7 +26,17 @@ public class Movies {
 		this.rating = rating;
 		this.genre = genre;
 	}
-		
+	
+	////constructor without ID	
+	public Movies(String movieTitle, int releaseYear, int rating, String genre) {
+		super();
+		this.movieTitle = movieTitle;
+		this.releaseYear = releaseYear;
+		this.rating = rating;
+		this.genre = genre;
+	}
+
+
 	public Movies() {
 		super();
 	}
