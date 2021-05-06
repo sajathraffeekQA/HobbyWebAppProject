@@ -10,6 +10,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
@@ -19,6 +22,8 @@ import com.qa.movies.domain.Movies;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
+@Sql(scripts= {"classpath:schema.sql","classpath:data.sql"}, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+@ActiveProfiles("test")
 public class MoviesControllerIntergrationTesting {
 	
 	@Autowired
@@ -35,7 +40,7 @@ public class MoviesControllerIntergrationTesting {
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(batmanAsJSON);
 		
-		Movies savedBatman = new Movies(1L, "Batman", 2006, 90, "Action"); ///create saved entry
+		Movies savedBatman = new Movies(2L, "Batman", 2006, 90, "Action"); ///create saved entry
 		String savedBatmanAsJSON = this.mapper.writeValueAsString(savedBatman); ///convert to JSON
 		
 		ResultMatcher matchStatus = status().isCreated(); ///check if status 201 is created
