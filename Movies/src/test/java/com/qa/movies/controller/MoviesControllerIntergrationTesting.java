@@ -1,9 +1,14 @@
 package com.qa.movies.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,50 +58,47 @@ public class MoviesControllerIntergrationTesting {
 
 	@Test
 	void testRead() throws Exception {
-		Movies batman = new Movies("Batman", 2006, 90, "Action");
-		String batmanAsJSON = this.mapper.writeValueAsString(batman);
+		Movies batman = new Movies(1L,"Batman", 2006, 90, "Action");
+		
+		List<Movies> MovieList = new ArrayList<>();
+		MovieList.add(batman);
+		String movieListAsJSON = this.mapper.writeValueAsString(MovieList);
+		
+		
+		RequestBuilder mockRequest = get("/getAll");
 
-		RequestBuilder mockRequest = get("/getAll")
-				.contentType(MediaType.APPLICATION_JSON).content(batmanAsJSON);
-		
-//		Movies savedBatman = new Movies(2L, "Batman", 2006, 90, "Action");
-//		String savedBatmanAsJSON = this.mapper.writeValueAsString(savedBatman);
-		
 		ResultMatcher matchStatus = status().isOk();
-		ResultMatcher matchBody = content().json(batmanAsJSON);
+		ResultMatcher matchBody = content().json(movieListAsJSON);
 		
+
+		this.mockMVC.perform(mockRequest).andExpect(matchBody).andExpect(matchStatus);
+	}
+
+	@Test
+	void testDelete() throws Exception {
+
+		RequestBuilder mockRequest = delete("/remove/1"); // should i add /remove/1 ?
+
+		ResultMatcher matchStatus = status().isOk();
+		ResultMatcher matchBody = content().string("false");
+
 		this.mockMVC.perform(mockRequest).andExpect(matchStatus).andExpect(matchBody);
 	}
 
-//	@Test
-//	void testDelete() throws Exception {
-//		Movies batman = new Movies("Batman", 2006, 90, "Action");
-//		String batmanAsJSON = this.mapper.writeValueAsString(batman); 
-//		RequestBuilder mockRequest = delete("/remove") 
-//				.contentType(MediaType.APPLICATION_JSON).content(batmanAsJSON);
-////		Movies savedBatman = new Movies(2L, "Batman", 2006, 90, "Action"); 
-////		String savedBatmanAsJSON = this.mapper.writeValueAsString(savedBatman); 
-//
-//		ResultMatcher matchStatus = status().isNotFound(); 
-//		ResultMatcher matchBody = content().json(batmanAsJSON); 
-//
-//		this.mockMVC.perform(mockRequest).andExpect(matchStatus).andExpect(matchBody);
-//	}
+	@Test
+	void testUpdate() throws Exception {
+		Movies batman = new Movies("Batman", 2012, 80, "Action");
+		String batmanAsJSON = this.mapper.writeValueAsString(batman);
+		RequestBuilder mockRequest = put("/update/1").contentType(MediaType.APPLICATION_JSON).content(batmanAsJSON);
+		// should i add /update/1
 
-//	@Test
-//	void testUpdate() throws Exception  {
-//		Movies batman = new Movies("Batman", 2006, 90, "Action");
-//		String batmanAsJSON = this.mapper.writeValueAsString(batman);
-//		RequestBuilder mockRequest = put("/update").contentType(MediaType.APPLICATION_JSON).content(batmanAsJSON);
-//
-//		Movies updatedBatman = new Movies(1L, "Batman", 2012, 80, "Action");
-//		String updatedBatmanAsJSON = this.mapper.writeValueAsString(updatedBatman);
-//
-//		ResultMatcher matchStatus = status().isNotFound(); // isAccepted() is what i expected
-//
-//		ResultMatcher matchBody = content().json(updatedBatmanAsJSON);
-//
-//		this.mockMVC.perform(mockRequest).andExpect(matchStatus).andExpect(matchBody);
-//
-//	}
+		Movies updatedBatman = new Movies(1L, "Batman", 2012, 80, "Action");
+		String updatedBatmanAsJSON = this.mapper.writeValueAsString(updatedBatman);
+
+		ResultMatcher matchStatus = status().isAccepted();
+		ResultMatcher matchBody = content().json(updatedBatmanAsJSON);
+
+		this.mockMVC.perform(mockRequest).andExpect(matchStatus).andExpect(matchBody);
+
+	}
 }

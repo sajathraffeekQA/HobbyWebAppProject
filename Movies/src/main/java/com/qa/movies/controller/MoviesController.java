@@ -41,9 +41,9 @@ public class MoviesController {
 	
 	// DELETE
 	@DeleteMapping("/remove/{index}")
-	public Movies removeEntry(@PathVariable Long index) {
-		this.service.remove(index);
-		return this.service.getById(index);
+	public boolean removeEntry(@PathVariable Long index) {
+		return this.service.remove(index);
+		
 	}
 	
 	// UPDATE
