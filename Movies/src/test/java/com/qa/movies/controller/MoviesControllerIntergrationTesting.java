@@ -90,7 +90,7 @@ public class MoviesControllerIntergrationTesting {
 		Movies batman = new Movies("Batman", 2012, 80, "Action");
 		String batmanAsJSON = this.mapper.writeValueAsString(batman);
 		RequestBuilder mockRequest = put("/update/1").contentType(MediaType.APPLICATION_JSON).content(batmanAsJSON);
-		// should i add /update/1
+		
 
 		Movies updatedBatman = new Movies(1L, "Batman", 2012, 80, "Action");
 		String updatedBatmanAsJSON = this.mapper.writeValueAsString(updatedBatman);

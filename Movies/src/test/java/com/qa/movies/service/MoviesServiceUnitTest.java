@@ -30,10 +30,16 @@ public class MoviesServiceUnitTest {
 		assertThat(this.service.create(batman)).isEqualTo(savedBatman);
 		
 		Mockito.verify(this.repo, Mockito.times(1)).save(batman);
+	}
 		
+		@Test
+		void TestRead() {
+			
+		}
+			
 		
 		
 		
 	}
 	
-}
+
