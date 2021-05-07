@@ -50,7 +50,28 @@ public class MoviesServiceUnitTest {
 			assertThat(this.service.getAll()).isEqualTo(MovieList);
 			}
 			
+		@Test
+		void TestDelete() {
+			//given
+			//boolean deleted = this.repo.existsById(1L);
+			//when
+			Mockito.when(this.repo.existsById(1L)).thenReturn(false);
+			//then
+			assertThat(this.service.remove(1L)).isEqualTo(false);			
+		}
 		
+		@Test
+		void TestUpdate() {
+			//given
+			Movies batman = new Movies("Batman", 2012, 80, "Action");
+			Movies updatedBatman = new Movies(1L, "Batman", 2012, 80, "Action");
+			//when
+			Mockito.when(this.repo.saveAndFlush(batman)).thenReturn(updatedBatman);
+			//then
+			assertThat(this.service.update(1L, batman)).isEqualTo(updatedBatman);
+			
+			Mockito.verify(this.repo, Mockito.times(1)).saveAndFlush(batman);
+		}
 		
 		
 	}
