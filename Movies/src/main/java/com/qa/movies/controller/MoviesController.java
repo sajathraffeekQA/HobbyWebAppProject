@@ -38,6 +38,7 @@ public class MoviesController {
 		return ResponseEntity.ok(this.service.getAll());
 	}
 	
+
 	
 	// DELETE
 	@DeleteMapping("/remove/{index}")
