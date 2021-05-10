@@ -12,6 +12,7 @@
     <div class="container">
         <h1> Create a movie entry</h1>
     <form>
+      <div class="alert" id="onSuccess" ></div>
       <div class="row">
        
          <div class="col-md-3 mb-3">
@@ -67,12 +68,16 @@
             <option value="">War</option>
         </select>
        
-        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="submit" class="btn btn-success" onclick="createEntry();">Submit</button>
         <button type="submit" class="btn btn-danger">Reset</button>
       </form>
     </br>
       <h5>To read all entries <a href="./read.html">click here.</a></h5>
       
       </div>
-</body>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>>
+      <script src="./HWB.js"> </script>
+    </body>
+
 </html>

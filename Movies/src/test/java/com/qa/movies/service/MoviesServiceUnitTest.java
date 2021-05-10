@@ -1,9 +1,13 @@
 package com.qa.movies.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -62,16 +66,25 @@ public class MoviesServiceUnitTest {
 		
 		@Test
 		void TestUpdate() {
-			//given
-			Movies batman = new Movies("Batman", 2012, 80, "Action");
+//			//given
+//			Movies batman = new Movies("Batman", 2012, 80, "Action");
 			Movies updatedBatman = new Movies(1L, "Batman", 2012, 80, "Action");
-			//when
-			Mockito.when(this.repo.saveAndFlush(batman)).thenReturn(updatedBatman);
-			//then
-			assertThat(this.service.update(1L, batman)).isEqualTo(updatedBatman);
+			Movies updatedBatman2 = new Movies(1L, "whatMan", 2012, 80, "Action");
+//			//when
+//			Mockito.when(this.repo.save(batman)).thenReturn(updatedBatman);
+//			//then
+//			assertThat(this.service.update(1L, batman)).isEqualTo(updatedBatman);
+//			
 			
-			Mockito.verify(this.repo, Mockito.times(1)).saveAndFlush(batman);
+			//Mockito.verify(this.repo, Mockito.times(1)).save(batman);
+			
+			when(this.repo.findById(updatedBatman.getId())).thenReturn(Optional.of(updatedBatman));
+			when(this.repo.save(updatedBatman2)).thenReturn(updatedBatman2);
+			assertThat(this.service.update(1L, updatedBatman2)).isEqualTo(updatedBatman2);
+			verify(this.repo, atLeastOnce()).findById(updatedBatman.getId());
+			verify(this.repo, atLeastOnce()).save(updatedBatman2);
 		}
+		
 		
 		
 	}
