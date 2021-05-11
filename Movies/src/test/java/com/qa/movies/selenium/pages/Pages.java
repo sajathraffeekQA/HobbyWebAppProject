@@ -13,6 +13,14 @@ public class Pages {
 	
 	@FindBy(id= "genre")
 	private WebElement genre;
+	
+	@FindBy(className = "btn btn-success")
+	private WebElement submit;
+	
+
+	public WebElement getSubmit() {
+		return submit;
+	}
 
 	public WebElement getMovieTitle() {
 		return movieTitle;

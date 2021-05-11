@@ -7,6 +7,9 @@ import org.junit.Test;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
+
+import com.qa.movies.selenium.pages.Pages;
 
 public class TestPages {
 
@@ -27,6 +30,11 @@ public class TestPages {
     @Test
     public void submitEntry() {
     	driver.get("http://127.0.0.1:5500/Create.html");
+    	Pages page = PageFactory.initElements(driver, Pages.class);
+    	page.getMovieTitle().sendKeys("Hulk");
+    	page.getReleaseYear().sendKeys("2008");
+    	page.getGenre().sendKeys("action");
+    	page.getSubmit().click();
     }
     
 }
