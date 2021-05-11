@@ -48,10 +48,10 @@ import com.qa.movies.repo.MoviesRepo;
 			entry.setRating(newMovies.getRating());
 			entry.setGenre(newMovies.getGenre());
 			
-			return this.repo.saveAndFlush(entry);
+			return this.repo.save(entry);
 		
 		}
-	
+			
 		public Movies getById(Long id) {
 			Optional<Movies> optionalEntry = this.repo.findById(id);
 			return optionalEntry.get(); 

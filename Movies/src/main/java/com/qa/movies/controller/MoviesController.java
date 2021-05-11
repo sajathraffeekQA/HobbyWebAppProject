@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import com.qa.movies.domain.Movies;
 import com.qa.movies.service.MoviesServiceDB;
 
 @RestController
+@CrossOrigin
 public class MoviesController {
 
 	private MoviesServiceDB service;
@@ -38,6 +40,7 @@ public class MoviesController {
 		return ResponseEntity.ok(this.service.getAll());
 	}
 	
+
 	
 	// DELETE
 	@DeleteMapping("/remove/{index}")

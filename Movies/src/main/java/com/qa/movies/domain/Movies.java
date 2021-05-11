@@ -22,7 +22,7 @@ public class Movies {
 	public Movies(Long id, String movieTitle, int releaseYear, int rating, String genre) {
 		super();
 		this.id = id;
-		//@NotNull()
+		
 		this.movieTitle = movieTitle;
 		this.releaseYear = releaseYear;
 		this.rating = rating;
@@ -30,7 +30,8 @@ public class Movies {
 	}
 	
 	////constructor without ID	
-	public Movies(String movieTitle, int releaseYear, int rating, String genre) {
+	public Movies(@NotNull(message = "Movie Title may not be null") String movieTitle, int releaseYear, int rating,
+			String genre) {
 		super();
 		this.movieTitle = movieTitle;
 		this.releaseYear = releaseYear;
@@ -39,38 +40,48 @@ public class Movies {
 	}
 
 
+	
 	public Movies() {
 		super();
 	}
-	
-	
+
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getMovieTitle() {
 		return movieTitle;
 	}
+
 	public void setMovieTitle(String movieTitle) {
 		this.movieTitle = movieTitle;
 	}
+
 	public int getReleaseYear() {
 		return releaseYear;
 	}
+
 	public void setReleaseYear(int releaseYear) {
 		this.releaseYear = releaseYear;
 	}
+
 	public int getRating() {
 		return rating;
 	}
+
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
+
 	public String getGenre() {
 		return genre;
 	}
+
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
@@ -117,7 +128,8 @@ public class Movies {
 			return false;
 		return true;
 	}
-	
+
+		
 	
 	
 	
