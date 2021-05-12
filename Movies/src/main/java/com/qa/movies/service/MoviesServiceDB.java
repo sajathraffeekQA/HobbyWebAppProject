@@ -56,6 +56,5 @@ import com.qa.movies.repo.MoviesRepo;
 			Optional<Movies> optionalEntry = this.repo.findById(id);
 			return optionalEntry.get(); 
 		
-
 }
 }

@@ -1,6 +1,7 @@
 package com.qa.movies.selenium.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,10 +9,18 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.web.server.LocalServerPort;
 
 import com.qa.movies.selenium.pages.Pages;
-
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class TestPages {
+	
+	// URL = "http://localhost"+randomServer
+	
+	@LocalServerPort
+	int randomServer; 
 
 	private WebDriver driver;
 
@@ -35,6 +44,8 @@ public class TestPages {
     	page.getReleaseYear().sendKeys("2008");
     	page.getGenre().sendKeys("action");
     	page.getSubmit().click();
+    	assertTrue(page.getSuccess().getText().contains("Movie Entry Created"));
+    	
     }
     
 }

@@ -5,18 +5,24 @@ import org.openqa.selenium.support.FindBy;
 
 public class Pages {
 
-	@FindBy(id= "movietitle")
+	@FindBy(id = "movietitle")
 	private WebElement movieTitle;
-	
-	@FindBy(id= "year")
+
+	@FindBy(id = "year")
 	private WebElement releaseYear;
-	
-	@FindBy(id= "genre")
+
+	@FindBy(id = "genre")
 	private WebElement genre;
-	
+
 	@FindBy(className = "btn btn-success")
 	private WebElement submit;
-	
+
+	@FindBy(id = "onSuccess")
+	private WebElement successmessage;
+
+	public WebElement getSuccess() {
+		return successmessage;
+	}
 
 	public WebElement getSubmit() {
 		return submit;
@@ -33,10 +39,5 @@ public class Pages {
 	public WebElement getGenre() {
 		return genre;
 	}
-	
-	
-	
-	
-	
-}
 
+}

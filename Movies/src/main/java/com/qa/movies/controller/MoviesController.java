@@ -21,38 +21,57 @@ import com.qa.movies.service.MoviesServiceDB;
 public class MoviesController {
 
 	private MoviesServiceDB service;
-	
+
 	public MoviesController(MoviesServiceDB service) {
-		this.service = service; 
+		this.service = service;
 	}
-		
-	// CRUD 
-	
+
+	// CRUD
+
 	// CREATE
 	@PostMapping("/create")
 	public ResponseEntity<Movies> createEntry(@RequestBody Movies movies) {
-		return new ResponseEntity<Movies>(this.service.create(movies),HttpStatus.CREATED);
+		return new ResponseEntity<Movies>(this.service.create(movies), HttpStatus.CREATED);
 	}
-	
+
 	// READ
 	@GetMapping("/getAll")
-	public ResponseEntity<List<Movies>> getMovies(){
+	public ResponseEntity<List<Movies>> getMovies() {
 		return ResponseEntity.ok(this.service.getAll());
 	}
-	
 
-	
 	// DELETE
 	@DeleteMapping("/remove/{index}")
 	public boolean removeEntry(@PathVariable Long index) {
 		return this.service.remove(index);
-		
+
 	}
-	
+
 	// UPDATE
-	
+
 	@PutMapping("/update/{id}")
-	public ResponseEntity<Movies> updateEntry(@PathVariable Long id, @RequestBody Movies newObject){
+	public ResponseEntity<Movies> updateEntry(@PathVariable Long id, @RequestBody Movies newObject) {
 		return new ResponseEntity<Movies>(this.service.update(id, newObject), HttpStatus.ACCEPTED);
-} 
+	}
+
+	// Find by ID
+	@GetMapping("/getOne/{index}")
+	public ResponseEntity<Movies> getCharacterById(@PathVariable Long index) {
+		return ResponseEntity.ok(this.service.getById(index));
+	}
+
+	// FIND BY ID
+//	@GetMapping("/findById/{id}")
+//	public Movies findById(@PathParam("id") Long id) {
+//			return this.service.getById(id); }
+
+//	@GetMapping("/findById")
+//	public Movies findById(@PathParam("id") Long id) {
+//		for(Movies m : this.service.getAll()) {
+//			System.out.println(m.getId());
+//		}
+//		System.out.println(id);
+//		return null; 
+//}
+
 }
