@@ -3,7 +3,7 @@ package com.qa.movies.selenium.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class Pages {
+public class CreatePage {
 
 	@FindBy(id = "movietitle")
 	private WebElement movieTitle;
@@ -13,8 +13,11 @@ public class Pages {
 
 	@FindBy(id = "genre")
 	private WebElement genre;
+	
+	@FindBy(id= "rating")
+	private WebElement rating;
 
-	@FindBy(className = "btn btn-success")
+	@FindBy(className = "btn-success")
 	private WebElement submit;
 
 	@FindBy(id = "onSuccess")
@@ -34,6 +37,16 @@ public class Pages {
 
 	public WebElement getReleaseYear() {
 		return releaseYear;
+	}
+	
+	
+
+	public WebElement getRating() {
+		return rating;
+	}
+
+	public void setRating(WebElement rating) {
+		this.rating = rating;
 	}
 
 	public WebElement getGenre() {

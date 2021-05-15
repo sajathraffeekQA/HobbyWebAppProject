@@ -54,6 +54,7 @@ import com.qa.movies.repo.MoviesRepo;
 			
 		public Movies getById(Long id) {
 			Optional<Movies> optionalEntry = this.repo.findById(id);
+			optionalEntry.isPresent();
 			return optionalEntry.get(); 
 		
 }

@@ -3,8 +3,9 @@ package com.qa.movies.selenium.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,40 +13,57 @@ import org.openqa.selenium.support.PageFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import com.qa.movies.selenium.pages.Pages;
+import com.qa.movies.selenium.pages.CreatePage;
+
+@ContextConfiguration
+@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class TestPages {
-	
-	// URL = "http://localhost"+randomServer
-	
+
 	@LocalServerPort
-	int randomServer; 
+	int randomPort;
+	private final String URL = "http://localhost:";
+	
 
-	private WebDriver driver;
+	
 
-    @Before
-    public void setup() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().setSize(new Dimension(1366, 768));
-}
-    @Test
-    public void getSite() {
-    	driver.get("http://127.0.0.1:5500/Create.html");
-    	assertEquals("Movie Lists", driver.getTitle());
-    }
-    
-    @Test
-    public void submitEntry() {
-    	driver.get("http://127.0.0.1:5500/Create.html");
-    	Pages page = PageFactory.initElements(driver, Pages.class);
-    	page.getMovieTitle().sendKeys("Hulk");
-    	page.getReleaseYear().sendKeys("2008");
-    	page.getGenre().sendKeys("action");
-    	page.getSubmit().click();
-    	assertTrue(page.getSuccess().getText().contains("Movie Entry Created"));
-    	
-    }
-    
+	private static WebDriver driver;
+
+	@BeforeAll
+	public static void setup() {
+		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().window().setSize(new Dimension(1064, 600));
+	}
+
+//	@Test
+//	public void getSite() {
+//		driver.get(URL + randomPort + "/index.html");
+//		assertTrue(driver.getTitle().contains("Homepage"));
+//	}
+
+	@Test
+	public void checkURL() {
+		driver.get(URL+randomPort+"/");
+		assertEquals(URL+randomPort+"/", driver.getCurrentUrl());
+	}
+	
+	@Test
+	public void submitEntry() {
+		driver.get(URL + randomPort + "/create.html");
+		CreatePage page = PageFactory.initElements(driver, CreatePage.class);
+		page.getMovieTitle().sendKeys("Hulk");
+		page.getReleaseYear().sendKeys("2008");
+		page.getRating().sendKeys("70");
+		page.getGenre().sendKeys("action");
+		page.getSubmit().click();
+		assertTrue(page.getSuccess().getText().contains("Movie Entry Created"));
+
+	}
+	
+	
+
 }
