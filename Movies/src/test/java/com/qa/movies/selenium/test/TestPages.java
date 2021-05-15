@@ -64,6 +64,13 @@ public class TestPages {
 
 	}
 	
-	
+	@Test
+	public void readEntries() {
+		driver.get(URL + randomPort + "/create.html");
+		CreatePage page = PageFactory.initElements(driver, CreatePage.class);
+		
+		page.getClickhere().click();
+		assertEquals(URL+randomPort+"/read.html", driver.getCurrentUrl());
+	}
 
 }

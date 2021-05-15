@@ -100,7 +100,7 @@ const createCard = (entry) => {
     updateButton.className = "card-link";
     updateButton.innerText = "Update";
     updateButton.href = "/update.html?" + entry.id;
-    updateButton.addEventListener('click', () => updateEntry(entry.id));
+    //updateButton.addEventListener('click', () => updateEntry(entry.id));
 
     entryBody.appendChild(updateButton);
 
@@ -113,11 +113,11 @@ const createCard = (entry) => {
     return newColumn;
 }
 //UPDATE METHOD
-const updateEntry = (id) => {
-    console.log(id);
-    axios.put("http://localhost:8080/update/" + id).then(() => readEntry())
-    .catch(err => console.error(err));
-}
+// const updateEntry = (id) => {
+//     console.log(id);
+//     axios.put("http://localhost:8080/update/" + id).then(() => readEntry())
+//     .catch(err => console.error(err));
+//}
 
 //DELETE METHOD
 const deleteEntry = (id) => {

@@ -16,6 +16,9 @@ public class CreatePage {
 	
 	@FindBy(id= "rating")
 	private WebElement rating;
+	
+	@FindBy(id="clickhere")
+	private WebElement clickhere;
 
 	@FindBy(className = "btn-success")
 	private WebElement submit;
@@ -33,6 +36,15 @@ public class CreatePage {
 
 	public WebElement getMovieTitle() {
 		return movieTitle;
+	}
+	
+
+	public WebElement getClickhere() {
+		return clickhere;
+	}
+
+	public void setClickhere(WebElement clickhere) {
+		this.clickhere = clickhere;
 	}
 
 	public WebElement getReleaseYear() {
