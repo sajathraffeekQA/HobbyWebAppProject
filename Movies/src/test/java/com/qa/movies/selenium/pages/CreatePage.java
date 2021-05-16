@@ -25,11 +25,34 @@ public class CreatePage {
 
 	@FindBy(id = "onSuccess")
 	private WebElement successmessage;
+	
+	@FindBy(linkText= "Delete")
+	private WebElement Delete;
+
+	@FindBy(linkText= "Update")
+	private WebElement Update;
+
+	
+	public WebElement getUpdate() {
+		return Update;
+	}
+
+	public void setUpdate(WebElement update) {
+		Update = update;
+	}
+
+	public WebElement getDelete() {
+		return Delete;
+	}
+
+	public void setDelete(WebElement delete) {
+		Delete = delete;
+	}
 
 	public WebElement getSuccess() {
 		return successmessage;
 	}
-
+	
 	public WebElement getSubmit() {
 		return submit;
 	}
@@ -42,6 +65,7 @@ public class CreatePage {
 	public WebElement getClickhere() {
 		return clickhere;
 	}
+
 
 	public void setClickhere(WebElement clickhere) {
 		this.clickhere = clickhere;

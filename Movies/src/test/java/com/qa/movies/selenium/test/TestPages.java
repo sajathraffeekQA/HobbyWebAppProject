@@ -23,13 +23,11 @@ import com.qa.movies.selenium.pages.CreatePage;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class TestPages {
 
+
 	@LocalServerPort
 	int randomPort;
 	private final String URL = "http://localhost:";
 	
-
-	
-
 	private static WebDriver driver;
 
 	@BeforeAll
@@ -71,6 +69,32 @@ public class TestPages {
 		
 		page.getClickhere().click();
 		assertEquals(URL+randomPort+"/read.html", driver.getCurrentUrl());
+	
 	}
+	
+	@Test
+	public void DeleteEntries() {
+		driver.get(URL + randomPort + "/create.html");
+		CreatePage page = PageFactory.initElements(driver, CreatePage.class);
+		
+		page.getClickhere().click();
+		page.getDelete().click();
+		
+		assertEquals(URL+randomPort+"/read.html", driver.getCurrentUrl());
+	
+	}
+	
+	@Test
+	public void UpdateEntries() {
+		driver.get(URL + randomPort + "/create.html");
+		CreatePage page = PageFactory.initElements(driver, CreatePage.class);
+		
+		page.getClickhere().click();
+		page.getUpdate().click();
+		
+		
+		assertTrue(driver.getTitle().contains("Update Entry"));
+	}
+	
 
 }
