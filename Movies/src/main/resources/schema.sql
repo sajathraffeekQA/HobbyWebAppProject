@@ -1,0 +1,2 @@
+drop table if exists movies CASCADE; 
+create table movies (id bigint AUTO_INCREMENT, genre varchar(255), movie_title varchar(255), rating integer not null, release_year integer not null, primary key (id));
