@@ -56,9 +56,7 @@ public class MoviesServiceUnitTest {
 			
 		@Test
 		void TestDelete() {
-			//given
-			//boolean deleted = this.repo.existsById(1L);
-			//when
+			
 			Mockito.when(this.repo.existsById(1L)).thenReturn(false);
 			//then
 			assertThat(this.service.remove(1L)).isEqualTo(false);			
@@ -66,17 +64,10 @@ public class MoviesServiceUnitTest {
 		
 		@Test
 		void TestUpdate() {
-//			//given
-//			Movies batman = new Movies("Batman", 2012, 80, "Action");
+
 			Movies updatedBatman = new Movies(1L, "Batman", 2012, 80, "Action");
 			Movies updatedBatman2 = new Movies(1L, "whatMan", 2012, 80, "Action");
-//			//when
-//			Mockito.when(this.repo.save(batman)).thenReturn(updatedBatman);
-//			//then
-//			assertThat(this.service.update(1L, batman)).isEqualTo(updatedBatman);
-//			
-			
-			//Mockito.verify(this.repo, Mockito.times(1)).save(batman);
+	
 			
 			when(this.repo.findById(updatedBatman.getId())).thenReturn(Optional.of(updatedBatman));
 			when(this.repo.save(updatedBatman2)).thenReturn(updatedBatman2);

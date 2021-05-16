@@ -37,11 +37,7 @@ public class TestPages {
 		driver.manage().window().setSize(new Dimension(1064, 600));
 	}
 
-//	@Test
-//	public void getSite() {
-//		driver.get(URL + randomPort + "/index.html");
-//		assertTrue(driver.getTitle().contains("Homepage"));
-//	}
+
 
 	@Test
 	public void checkURL() {

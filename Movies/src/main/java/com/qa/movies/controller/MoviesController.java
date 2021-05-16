@@ -60,18 +60,5 @@ public class MoviesController {
 		return ResponseEntity.ok(this.service.getById(index));
 	}
 
-	// FIND BY ID
-//	@GetMapping("/findById/{id}")
-//	public Movies findById(@PathParam("id") Long id) {
-//			return this.service.getById(id); }
-
-//	@GetMapping("/findById")
-//	public Movies findById(@PathParam("id") Long id) {
-//		for(Movies m : this.service.getAll()) {
-//			System.out.println(m.getId());
-//		}
-//		System.out.println(id);
-//		return null; 
-//}
 
 }
