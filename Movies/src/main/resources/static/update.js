@@ -5,8 +5,6 @@ const UPDATEDYEAR = document.querySelector("#updateyear")
 const UPDATEDRATING = document.querySelector("#updaterating")
 const UPDATEDGENRE = document.querySelector("#updategenre")
 
-
-
 const updateMethod = (id) => {
     axios.get("http://localhost:8080/getOne/" + id)
     .then((response) => {
@@ -28,8 +26,6 @@ document.getElementById("updateTitle").value = response.movieTitle;
 document.getElementById("updateYear").value = response.releaseYear;
 document.getElementById("updateRating").value = response.rating;
 document.getElementById("updateGenre").value = response.genre;
-
-console.log(response)
 }
 
 
@@ -43,28 +39,17 @@ const updateEntry = (e) => {
     const UPDATED_RATING_VALUE = UPDATEDRATING.value;
     const UPDATED_GENRE_VALUE = UPDATEDGENRE.value;
     
-    console.log(UPDATED_TITLE_VALUE, UPDATED_YEAR_VALUE, UPDATED_RATING_VALUE, UPDATED_GENRE_VALUE);
-
-    const obj = {
+        console.log(UPDATED_TITLE_VALUE, UPDATED_YEAR_VALUE, UPDATED_RATING_VALUE, UPDATED_GENRE_VALUE);
+    const object = {
         movieTitle: UPDATED_TITLE_VALUE,
         releaseYear: UPDATED_YEAR_VALUE,
         rating: UPDATED_RATING_VALUE,
         genre: UPDATED_GENRE_VALUE
     };
 
-    console.log(obj);
+    //console.log(object);
 
-    axios.put("http://localhost:8080/update/" + id, obj)
-    .then((response) => { 
-        console.log(response);
-        ALERT.setAttribute("class", "alert alert-successful");
-        ALERT.innerHTML = "Movie Entry Updated!";
-        setTimeout(() => {
-            ALERT.removeAttribute("class");
-            ALERT.innerHTML = "";
-        }, 5000);
-    })
-
+    axios.put("http://localhost:8080/update/" + id, object).then((response) => console.log(response))
     .catch(err => console.error(err));
 }
 

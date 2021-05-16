@@ -11,6 +11,7 @@ const ENTRY = document.querySelector("#read");
 
 const UPDATEMODAL = document.getElementById("#updateModal")
 
+//const UPDATEID = document.getElementById("#updateid")
 
 
 //CREATE METHOD
@@ -45,7 +46,7 @@ const createEntry = (e) => {
         })
 
         .catch((err) => console.log(err));
-
+location.reload();
 }
 
 //READ ALL METHOD
@@ -111,6 +112,12 @@ const createCard = (entry) => {
 
     return newColumn;
 }
+//UPDATE METHOD
+// const updateEntry = (id) => {
+//     console.log(id);
+//     axios.put("http://localhost:8080/update/" + id).then(() => readEntry())
+//     .catch(err => console.error(err));
+//}
 
 //DELETE METHOD
 const deleteEntry = (id) => {

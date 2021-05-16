@@ -46,7 +46,7 @@ const createEntry = (e) => {
         })
 
         .catch((err) => console.log(err));
-
+location.reload();
 }
 
 //READ ALL METHOD
