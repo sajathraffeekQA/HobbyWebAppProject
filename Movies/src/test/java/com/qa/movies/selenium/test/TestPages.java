@@ -54,8 +54,8 @@ public class TestPages {
 		page.getRating().sendKeys("70");
 		page.getGenre().sendKeys("action");
 		page.getSubmit().click();
-		assertTrue(page.getSuccess().getText().contains("Movie Entry Created"));
-
+		//assertTrue(page.getSuccess().getText().contains("Movie Entry Created"));
+		assertTrue(driver.getTitle().contains("Movie Lists"));
 	}
 	
 	@Test
