@@ -1,5 +1,13 @@
 # HobbyWebAppProject
 
+# HobbyWebAppProject (MOVE TO DEV BRANCH!)
+Hobby Web Application project work for week 9 submission
+
+*****MUST READ!*******
+Due to problems with github, the master/main branch in this project is considered to be the DEV branch!
+Please move to the 'dev' branch to assess the final project.
+
+
 Hobby Web Application Project
 A fully Hobbt Web Application was created, using front end and back end software and incorporating them together to create a functional website. From project management aspects all the way to testing, a lot of methodologies were applied to form a functional application. Link to Jira Board: https://team-1616578761183.atlassian.net/jira/software/projects/HWA/boards/4/roadmap
 
