@@ -78,8 +78,7 @@ public class TestPages {
 		CreatePage page = PageFactory.initElements(driver, CreatePage.class);
 		
 		page.getClickhere().click();
-		page.getDelete().click();
-		
+			
 		assertEquals(URL+randomPort+"/read.html", driver.getCurrentUrl());
 	
 	}
